@@ -1,7 +1,7 @@
 # Тест взят http://www.syntone-spb.ru/library/article_syntone/content/4969.html
 
-require './test.rb'
-require './test_result_printer.rb'
+require_relative 'lib/test.rb'
+require_relative 'lib/test_result_printer.rb'
 
 version = "Тест \"Ваш уровень общительности\". Версия 0.1. (c) 2016 M. Esgeri\n\n"
 
@@ -24,6 +24,6 @@ puts "Добрый день, #{name}! Ответьте пожалуйста че
 test = Test.new
 test_result_printer = TestResultPrinter.new
 
-test.next_question
+test.ask_questions
 
 test_result_printer.print_result(test)
