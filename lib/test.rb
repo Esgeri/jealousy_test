@@ -27,7 +27,7 @@ class Test
     @yes_answers = 0
   end
 
-  def next_question
+  def ask_questions
     # цикл по массиву questions - каждый элемент записывается в специальную переменную item,
     @questions.each do |question|
       puts question # вывели на экран след. вопрос
