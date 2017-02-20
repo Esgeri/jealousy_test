@@ -2,20 +2,17 @@ class Test
   attr_reader :yes_answers, :questions
   attr_accessor :version
 
-  def initialize(questions)
-    @questions = questions
+  def initialize(questions_path)
+    @questions = read_questions_from_file(questions_path)
     @yes_answers = 0
   end
 
   def ask_questions
-    # цикл по массиву questions - каждый элемент записывается в специальную переменную item,
     @questions.each do |question|
-      puts question # вывели на экран след. вопрос
+      puts question
 
-      # переменная, куда будет сохраняться ответ пользователя, прочитанный из консоли
       user_input = nil
 
-      #  цикл повторяющий просьбу ввести ответ до тех пор, пока не будет введен правильный ответ
       until %w(да нет иногда).include? user_input
         puts "введите 'да', 'нет' или 'иногда' и нажмите Enter"
 
@@ -29,5 +26,17 @@ class Test
         @yes_answers += 1
       end
     end
+  end
+
+  def read_questions_from_file(questions_path)
+    if !File.exist?(questions_path)
+      return nil
+    end
+
+    f = File.new(questions_path, "r:UTF-8")
+    questions = f.readlines
+    f.close
+
+    return questions
   end
 end
